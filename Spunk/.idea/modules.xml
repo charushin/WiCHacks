@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Spunk.iml" filepath="$PROJECT_DIR$/Spunk.iml" />
+      <module fileurl="file://C:\Users\kalyani\Desktop\WiCHacks\Spunk\Spunk.iml" filepath="C:\Users\kalyani\Desktop\WiCHacks\Spunk\Spunk.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\kalyani\Desktop\WiCHacks\Spunk\app\app.iml" filepath="C:\Users\kalyani\Desktop\WiCHacks\Spunk\app\app.iml" />
     </modules>
   </component>
 </project>
