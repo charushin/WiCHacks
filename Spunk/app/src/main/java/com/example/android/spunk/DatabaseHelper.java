@@ -100,7 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         System.out.println("----------Inside Copy-----");
         //Open your local db as the input stream
-        InputStream myInput = myContext.getAssets().open(DB_NAME+".db");
+        InputStream myInput = myContext.getAssets().open(DB_NAME);
         System.out.println("----------"+ myInput.toString());
         // Path to the just created empty db
 
@@ -251,10 +251,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return comments;
     }
 
-    public String getKarenText(int id){
+   /* public String getKarenText(int id){
        // myDataBase = this.getReadableDatabase();
         String query = "SELECT KAREN_TEXT FROM TRANSLATION WHERE _id = " + id;;
-        System.out.println(query);
+        System.out.println(query);*/
 
     public ArrayList<String> getPostTitles(String type){
         ArrayList<String> postTitleList = new ArrayList<>();

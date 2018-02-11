@@ -50,7 +50,7 @@ public class TabFragment1 extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 PostEntity postEntity = finalContents.get(position);
                 //Intent detailIntent = null;
-                if (postEntity.getPostID() == -1) {
+                if (postEntity.get_id() == -1) {
                     System.out.println("No view to show now");
                     //see if popup can be displayed
                 } else {
@@ -59,7 +59,7 @@ public class TabFragment1 extends Fragment {
                     // System.out.println(finalContents.hasSubMenu+"value of hasSubMenu");
 
                      Intent detailIntent = new Intent(getContext(), DetailActivity.class);
-                    detailIntent.putExtra("postId",postEntity.getPostID());
+                    detailIntent.putExtra("postId",postEntity.get_id());
                     detailIntent.putExtra("title", postEntity.getTitle());
                     detailIntent.putExtra("title", postEntity.getDescription());
                     startActivity(detailIntent);
