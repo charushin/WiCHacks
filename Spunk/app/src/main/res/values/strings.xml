@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Spunk</string>
     <string name="app_quote">“If they don’t like you for being yourself, be yourself even more.” - Taylor Swift</string>
+    <string name="helpline_page">Help Line</string>
+    <string name="helpline_text">Crisis Call Center: </string>
+    <string name="crisis_no">800-273-8255</string>
+    <string name="crisis_tipline">Cyber Tipline: </string>
+    <string name="tipline_no">800-843-5678</string>
+    <string name="link">Click here for more details</string>
+
+
 </resources>
