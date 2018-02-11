@@ -8,14 +8,14 @@ public class PostEntity {
 
     public static final String TAG = com.example.android.spunk.PostEntity.class.getSimpleName();
 
-    private int postID;
+    private int _id;
     private String type;
     private String title;
     private String description;
     private int userId;
 
-    public PostEntity(int postID, String type, String title, String description, int userId) {
-        this.postID = postID;
+    public PostEntity(int _id, String type, String title, String description, int userId) {
+        this._id = _id;
         this.type = type;
         this.title = title;
         this.description = description;
@@ -29,7 +29,7 @@ public class PostEntity {
 
         PostEntity that = (PostEntity) o;
 
-        if (postID != that.postID) return false;
+        if (_id != that._id) return false;
         if (userId != that.userId) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
@@ -38,7 +38,7 @@ public class PostEntity {
 
     @Override
     public int hashCode() {
-        int result = postID;
+        int result = _id;
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
@@ -48,12 +48,12 @@ public class PostEntity {
 
 
 
-    public int getPostID() {
-        return postID;
+    public int get_id() {
+        return _id;
     }
 
-    public void setPostID(int postID) {
-        this.postID = postID;
+    public void set_id(int _id) {
+        this._id = _id;
     }
 
     public String getType() {
