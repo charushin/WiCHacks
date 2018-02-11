@@ -29,9 +29,9 @@ public class TabFragment1 extends Fragment {
 
 
         initialiseDatabase();
-        //contents=myDBHelper.getPosts();
-        contents.add(new PostEntity(1,"Q","Title1","Desc1",1));
-        contents.add(new PostEntity(2,"Q","Title2","Desc2",1));
+        contents=myDBHelper.getPosts();
+        //contents.add(new PostEntity(1,"Q","Title1","Desc1",1));
+        //contents.add(new PostEntity(2,"Q","Title2","Desc2",1));
 
         //System.out.println(dataArrayList);
         // Create adapter
