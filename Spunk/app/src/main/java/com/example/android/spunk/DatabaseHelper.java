@@ -97,9 +97,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * This is done by transfering bytestream.
      * */
     private void copyDataBase() throws IOException {
+
+        System.out.println("----------Inside Copy-----");
+        //Open your local db as the input stream
+        InputStream myInput = myContext.getAssets().open(DB_NAME);
+        System.out.println("----------"+ myInput.toString());
+        // Path to the just created empty db
+
         String outFileName = DB_PATH;
         OutputStream myOutput = new FileOutputStream(outFileName);
-        InputStream myInput = myContext.getAssets().open(DB_NAME);
+       // InputStream myInput = myContext.getAssets().open(DB_NAME);
         byte[] buffer = new byte[1024];
         int length;
         while ((length = myInput.read(buffer)) > 0)
@@ -175,10 +182,85 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+
+
+    public ArrayList<PostEntity> getPosts(){
+        ArrayList<PostEntity> posts=new ArrayList<PostEntity>();
+        String query="select * from Posts where type='Q';"; // WHERE PARENT_ID = " + id + " AND IS_DETAIL='NO'";
+        System.out.println(query);
+        Cursor c=myDataBase.rawQuery(query,null);
+        System.out.println(c.getCount());
+        if (c != null ) {
+            if  (c.moveToFirst()) {
+                do {
+
+                    int postId=c.getInt(c.getColumnIndex("postId"));
+                    String type=c.getString(c.getColumnIndex("type"));
+                    String title=c.getString(c.getColumnIndex("title"));
+                    //int parentId=c.getInt(c.getColumnIndex("PARENT_ID"));
+                    String description=c.getString(c.getColumnIndex("description"));
+                    //String keywords1=c.getString(c.getColumnIndex("KEYWORD1"));
+                    //String keywords2=c.getString(c.getColumnIndex("KEYWORD2"));
+                    int userId=c.getInt(c.getColumnIndex("userId"));
+                    //HealthAppData healthAppData=new HealthAppData(_id,englishText,karenText,parentId,isParent,keywords1,keywords2);
+                    PostEntity postEntity=new PostEntity(postId, type, title, description, userId);
+                    posts.add(postEntity);
+                }while (c.moveToNext());
+            }
+            else {
+                //PostEntity postEntity=new PostEntity(0,"No data here","No data here",0,"NO","","");
+                //contents.add(healthAppData);
+                System.out.println("No data here for posts");
+            }
+        }
+        return posts;
+    }
+
+
+    public ArrayList<Comments> getComments(int postId){
+        ArrayList<Comments> comments=new ArrayList<Comments>();
+
+
+        String query="select * from Comments where postId="+postId+";"; // WHERE PARENT_ID = " + id + " AND IS_DETAIL='NO'";
+        System.out.println(query);
+        Cursor c=myDataBase.rawQuery(query,null);
+        System.out.println(c.getCount());
+        if (c != null ) {
+            if  (c.moveToFirst()) {
+                do {
+
+                    int commentId=c.getInt(c.getColumnIndex("_id"));
+                    int userId=c.getInt(c.getColumnIndex("userId"));
+                    //int parentId=c.getInt(c.getColumnIndex("PARENT_ID"));
+                    String description=c.getString(c.getColumnIndex("description"));
+                    //String keywords1=c.getString(c.getColumnIndex("KEYWORD1"));
+                    //String keywords2=c.getString(c.getColumnIndex("KEYWORD2"));
+                   // int userId=c.getInt(c.getColumnIndex("userId"));
+                    //HealthAppData healthAppData=new HealthAppData(_id,englishText,karenText,parentId,isParent,keywords1,keywords2);
+                    Comments comments1=new Comments(commentId, postId, userId, description);
+                    comments.add(comments1);
+                }while (c.moveToNext());
+            }
+            else {
+                //PostEntity postEntity=new PostEntity(0,"No data here","No data here",0,"NO","","");
+                //contents.add(healthAppData);
+                System.out.println("No data here for posts");
+            }
+        }
+
+        return comments;
+    }
+
+   /* public String getKarenText(int id){
+       // myDataBase = this.getReadableDatabase();
+        String query = "SELECT KAREN_TEXT FROM TRANSLATION WHERE _id = " + id;;
+        System.out.println(query);*/
+
     public ArrayList<String> getPostTitles(String type){
         ArrayList<String> postTitleList = new ArrayList<>();
         myDataBase = this.getReadableDatabase();
         String query = "SELECT title FROM posts where type = '"+type+"'";
+
         Cursor c = myDataBase.rawQuery(query, null);
         if(c != null ){
             if(c.moveToFirst()) {
