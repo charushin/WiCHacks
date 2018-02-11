@@ -1,10 +1,13 @@
 package com.example.android.spunk;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
@@ -21,9 +24,9 @@ import java.util.ArrayList;
 public class DatabaseHelper extends SQLiteOpenHelper {
     //The Android's default system path of your application database.
     private static String DB_PATH = "";
-
-    private static String DB_NAME = "SpunkDB";
-
+    private static final String TAG = DatabaseHelper.class.getSimpleName();
+    private static String DB_NAME = "SpunkData.db";
+    private static final int DATABASE_VERSION = 1;
     private SQLiteDatabase myDataBase;
 
     private final Context myContext;
@@ -34,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param context
      */
     public DatabaseHelper(Context context) {
-        super(context, DB_NAME, null, 1);
+        super(context, DB_NAME, null, DATABASE_VERSION);
         this.myContext = context;
         DB_PATH = myContext.getDatabasePath(DB_NAME).toString();
         //DB_PATH = "/data/data/"+myContext.getPackageName()+"/databases/";
@@ -50,15 +53,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(dbExist){
             //do nothing - database already exist
             System.out.println("----------Exists-----");
-        }else{
-            //By calling this method and empty database will be created into the default system path
-            //of your application so we are gonna be able to overwrite that database with our database.
+        }
+        boolean dbExist1 = checkDataBase();
+        if(!dbExist1)
+        {
             this.getReadableDatabase();
-            System.out.println("----------After Get-----");
-            //this.close();
-            try {
+            try
+            {
+                this.close();
                 copyDataBase();
-            } catch (IOException e) {
+            }
+            catch (IOException e)
+            {
                 throw new Error("Error copying database");
             }
         }
@@ -69,9 +75,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @return true if it exists, false if it doesn't
      */
     private boolean checkDataBase(){
-        File dbFile = new File(DB_PATH);
+       /* File dbFile = new File(DB_PATH);
         //Log.v("dbFile", dbFile + "   "+ dbFile.exists());
-        return dbFile.exists();
+        return dbFile.exists();*/
+        boolean checkDB = false;
+        try
+        {
+            String myPath = DB_PATH;
+            File dbfile = new File(myPath);
+            checkDB = dbfile.exists();
+        }
+        catch(SQLiteException e)
+        {
+        }
+        return checkDB;
     }
 
     /**
@@ -80,35 +97,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * This is done by transfering bytestream.
      * */
     private void copyDataBase() throws IOException {
-        System.out.println("----------Inside Copy-----");
-        //Open your local db as the input stream
-        InputStream myInput = myContext.getAssets().open(DB_NAME+".sqlite");
-        System.out.println("----------"+ myInput.toString());
-        // Path to the just created empty db
         String outFileName = DB_PATH;
-
-        //Open the empty db as the output stream
         OutputStream myOutput = new FileOutputStream(outFileName);
-
-        //transfer bytes from the inputfile to the outputfile
+        InputStream myInput = myContext.getAssets().open(DB_NAME);
         byte[] buffer = new byte[1024];
         int length;
-        while ((length = myInput.read(buffer))>0){
+        while ((length = myInput.read(buffer)) > 0)
+        {
             myOutput.write(buffer, 0, length);
         }
-
-        //Close the streams
+        myInput.close();
         myOutput.flush();
         myOutput.close();
-        myInput.close();
+    }
 
+    public void db_delete()
+    {
+        File file = new File(DB_PATH);
+        if(file.exists())
+        {
+            file.delete();
+            System.out.println("delete database file.");
+        }
     }
 
     public boolean openDataBase() throws SQLException {
 
         //Open the database
         String myPath = DB_PATH;
-        myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+        myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
         return myDataBase != null;
     }
 
@@ -129,7 +146,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        if (newVersion > oldVersion)
+        {
+            Log.v("Database Upgrade", "Database version higher than old.");
+            File file = new File(DB_PATH);
+            if(file.exists())
+            {
+                file.delete();
+                System.out.println("delete database file.");
+            }
+        }
     }
 
     // Add your public helper methods to access and get content from the database.
@@ -137,8 +163,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // to you to create adapters for your views.
 
     public String getPost(int postId){
-      //  myDataBase = this.getReadableDatabase();
-        String query = "SELECT title FROM post WHERE postId = " + postId;
+        myDataBase = this.getReadableDatabase();
+        String query = "SELECT title FROM posts WHERE _id = " + postId;
         System.out.println(query);
         Cursor c = myDataBase.rawQuery(query, null);
         String result = null;
@@ -149,27 +175,53 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public String getKarenText(int id){
-       // myDataBase = this.getReadableDatabase();
-        String query = "SELECT KAREN_TEXT FROM TRANSLATION WHERE _id = " + id;;
-        System.out.println(query);
+    public ArrayList<String> getPostTitles(String type){
+        ArrayList<String> postTitleList = new ArrayList<>();
+        myDataBase = this.getReadableDatabase();
+        String query = "SELECT title FROM posts where type = '"+type+"'";
         Cursor c = myDataBase.rawQuery(query, null);
-        String result = null;
-        if(c != null && c.moveToFirst()){
-            result = c.getString(0);
-            c.close();
+        if(c != null ){
+            if(c.moveToFirst()) {
+                do {
+                    String title = c.getString(c.getColumnIndex("title"));
+                    System.out.println(title);
+                    postTitleList.add(title);
+                } while (c.moveToNext());
+            }
         }
-        return result;
+        else{
+            return null;
+        }
+        return postTitleList;
     }
 
     public void setPost(String type, String title, String description, int userId){
-        String query = "insert into Posts(TYPE,TITLE, DESCRIPTION ,USERID) VALUES("+type+","+title+","+description+","+userId+");";
+        try {
+            myDataBase = this.getReadableDatabase();
+            ContentValues cv = new ContentValues(3);
+            cv.put("type", type);
+            cv.put("title", title);
+            cv.put("description", description);
+            cv.put("userId", userId);
+            myDataBase.insert("Posts", null, cv);
+            myDataBase.close();
+        }
+        catch(SQLException sqle){
+            sqle.printStackTrace();
+        }
+     /*   String query = "insert into Posts(TYPE,TITLE, DESCRIPTION ,userId) VALUES('"+type+"','"+title+"','"+description+"',"+userId+");";
+     //   String q2 = "Select title from Posts where user_id = 1";
         try{
+            Log.d(TAG,myDataBase.toString()+" "+myDataBase.getPath());
             myDataBase.execSQL(query);
+         //   Cursor s = myDataBase.rawQuery(q2, null);
+         //   Log.d(TAG, s.getString(0));
+          //  s.close();
+           // myDataBase.insert("Posts")
         }
         catch (SQLException sqle){
             sqle.printStackTrace();
-        }
+        }*/
     }
 
   /*  public ArrayList<PostEntity> getContents(int id){
