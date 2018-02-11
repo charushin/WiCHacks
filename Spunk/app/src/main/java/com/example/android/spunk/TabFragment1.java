@@ -21,17 +21,19 @@ import java.util.ArrayList;
 
 public class TabFragment1 extends Fragment {
     DatabaseHelper myDBHelper;
-    ArrayList<PostEntity> contents=new ArrayList<PostEntity>();
+    //ArrayList<PostEntity> contents=new ArrayList<PostEntity>();
+    ArrayList<PostEntity> contents;
     private ListView mListView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
          View v=inflater.inflate(R.layout.tab_fragment_1, container, false);
 
 
-        initialiseDatabase();
-        contents=myDBHelper.getPosts();
+        //initialiseDatabase();
+        //contents=myDBHelper.getPosts();
         //contents.add(new PostEntity(1,"Q","Title1","Desc1",1));
         //contents.add(new PostEntity(2,"Q","Title2","Desc2",1));
+        contents=(ArrayList)DataSet.initializePosts();
 
         //System.out.println(dataArrayList);
         // Create adapter
