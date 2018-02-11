@@ -6,7 +6,7 @@
     <string name="action_favorite">Favorites</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_home">HomeActivity</string>
-    <string name="app_quote">“If they don’t like you for being yourself, be yourself even more.” - Taylor Swift</string>
+    <string name="app_quote">“If they don’t like you for being yourself, be yourself even more.”</string>
     <string name="question_radio">Question</string>
     <string name="blog_radio">Blog</string>
     <string name="topic_label">Topic*:</string>

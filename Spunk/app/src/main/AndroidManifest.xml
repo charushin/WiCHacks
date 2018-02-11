@@ -27,15 +27,7 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-<<<<<<< HEAD
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-=======
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="com.example.android.spunk.VIEW" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
 
@@ -46,7 +38,6 @@
                 <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
->>>>>>> 38d7cc4e6f06c231ef9d490c3016052a94c95482
 
         <!-- <activity android:name=".MainActivity"></activity> -->
         <activity android:name=".helplineActivity" />
