@@ -28,7 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/question_radio"
-                android:fontFamily="@font/aclonica"/>
+                android:fontFamily="@font/aclonica"
+                android:checked="true"/>
             <RadioButton
                 android:id="@+id/blogRadioButton"
                 android:layout_width="wrap_content"

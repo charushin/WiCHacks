@@ -1,5 +1,7 @@
 package com.example.android.spunk;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -17,6 +19,7 @@ import android.widget.FrameLayout;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout fullView;
+    Context context=this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +116,18 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 switch (item.getItemId()) {
                     case R.id.nav_camera:
                         fullView.closeDrawers();
+                        openNewActivity("helplineActivity");
+                        return true;
+                    case R.id.nav_gallery:
+                        System.out.println("Gallery called");
+                        return true;
+                    case R.id.nav_slideshow:
+                        System.out.println("Slideshow called");
+                        fullView.closeDrawers();
+                        startActivity(new Intent(context, helplineActivity.class));
+                        return true;
+                    case R.id.nav_manage:
+                        System.out.println("Manage called");
                         return true;
 
                     default:
@@ -147,7 +162,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
+    public void openNewActivity(String name){
+        Intent intent=new Intent(context, helplineActivity.class);
+        startActivity(intent);
+    }
 
     /*@Override
     protected void onPostCreate(Bundle savedInstanceState) {

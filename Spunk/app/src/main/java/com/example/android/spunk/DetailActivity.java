@@ -1,90 +1,73 @@
 package com.example.android.spunk;
 
-/**
- * Created by charushi on 2/10/18.
- */
-
 import android.content.Intent;
 import android.database.SQLException;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TabFragment1 extends Fragment {
-    DatabaseHelper myDBHelper;
-    ArrayList<PostEntity> contents=new ArrayList<PostEntity>();
-    private ListView mListView;
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-         View v=inflater.inflate(R.layout.tab_fragment_1, container, false);
+public class DetailActivity extends AppCompatActivity {
 
+    DatabaseHelper myDBHelper;
+    ArrayList<Comments> comments=new ArrayList<Comments>();
+    private ListView mListView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail);
+
+        int postId=this.getIntent().getExtras().getInt("postId");
+        String title=this.getIntent().getExtras().getString("title");
+        String desc=this.getIntent().getExtras().getString("description");
 
         initialiseDatabase();
-        //contents=myDBHelper.getPosts();
-        contents.add(new PostEntity(1,"Q","Title1","Desc1",1));
-        contents.add(new PostEntity(2,"Q","Title2","Desc2",1));
+        comments=myDBHelper.getComments(postId);
 
-        //System.out.println(dataArrayList);
-        // Create adapter
-        final DataAdapter adapter = new DataAdapter(getContext(), contents, R.layout.list_items);
+        final DetailAdapter adapter = new DetailAdapter(this, comments, R.layout.list_comments);
 
         // Create list view
-        mListView = (ListView) v.findViewById(R.id.menu_list_view);
+        mListView = (ListView) findViewById(R.id.menu_list_view);
 
         mListView.setAdapter(adapter);
 
         //when an item is clicked
-        final ArrayList<PostEntity> finalContents = contents;
+        final ArrayList<Comments> finalContents = comments;
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PostEntity postEntity = finalContents.get(position);
+                Comments comments = finalContents.get(position);
+                System.out.println(comments.getDescription());
                 //Intent detailIntent = null;
-                if (postEntity.get_id() == -1) {
+                /*if (postEntity.getPostID() == -1) {
                     System.out.println("No view to show now");
                     //see if popup can be displayed
                 } else {
-                   // boolean showDetailView = myDBHelper.checkIfParent(healthAppData._id);
+                    // boolean showDetailView = myDBHelper.checkIfParent(healthAppData._id);
 
                     // System.out.println(finalContents.hasSubMenu+"value of hasSubMenu");
 
-                     Intent detailIntent = new Intent(getContext(), DetailActivity.class);
-                    detailIntent.putExtra("postId",postEntity.get_id());
+                    Intent detailIntent = new Intent(getContext(), DetailActivity.class);
+                    detailIntent.putExtra("postId",postEntity.getPostID());
                     detailIntent.putExtra("title", postEntity.getTitle());
                     detailIntent.putExtra("title", postEntity.getDescription());
                     startActivity(detailIntent);
-                }
+                }*/
             }
 
         });
 
-
-
-
-
-
-
-        //set up back button option for children activity
-
-
-    return v;
-
     }
 
 
-
     public void initialiseDatabase(){
-        myDBHelper = new DatabaseHelper(getContext());
+        myDBHelper = new DatabaseHelper(this);
         //myDBHelper = new DatabaseHelper(this);
         try{
             myDBHelper.createDataBase();

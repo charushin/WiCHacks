@@ -41,9 +41,10 @@ public class HomeActivity extends BaseActivity {
         //setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("My Feed"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tips"));
+        tabLayout.addTab(tabLayout.newTab().setText("Blog"));
+        tabLayout.addTab(tabLayout.newTab().setText("New Questions"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         ImageView iv = (ImageView)findViewById(R.id.imageView2);
