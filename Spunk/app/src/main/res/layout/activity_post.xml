@@ -19,9 +19,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/radio_text">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <!--<RelativeLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
 
             <RadioButton
                 android:id="@+id/questionRadioButton"
@@ -34,12 +34,11 @@
                 android:id="@+id/blogRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/questionRadioButton"
                 android:text="@string/blog_radio"
                 android:fontFamily="@font/aclonica"
-                android:layout_marginLeft="50sp"/>
+                />
 
-        </RelativeLayout>
+        <!--</RelativeLayout>-->
     </RadioGroup>
 
     <TextView
@@ -89,9 +88,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/button_post"
-        android:layout_toEndOf="@+id/radiogroup"
-        android:layout_toRightOf="@+id/radiogroup"
+        android:layout_toRightOf="@+id/button_post"
+        android:layout_below="@+id/editDesc"
         android:text="@string/button_discard" />
-
 
 </RelativeLayout>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +27,11 @@ public class DetailActivity extends AppCompatActivity {
         String title=this.getIntent().getExtras().getString("title");
         String desc=this.getIntent().getExtras().getString("description");
 
+        TextView titleView=(TextView)findViewById(R.id.titleView);
+        System.out.println("Title is "+title);
+        titleView.setText(title);
+        TextView descriptionView=(TextView)findViewById(R.id.descriptionView);
+        descriptionView.setText(desc);
         initialiseDatabase();
         comments=myDBHelper.getComments(postId);
 

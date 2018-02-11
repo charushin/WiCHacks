@@ -230,7 +230,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if  (c.moveToFirst()) {
                 do {
 
-                    int commentId=c.getInt(c.getColumnIndex("commentId"));
+                    int commentId=c.getInt(c.getColumnIndex("_id"));
                     int userId=c.getInt(c.getColumnIndex("userId"));
                     //int parentId=c.getInt(c.getColumnIndex("PARENT_ID"));
                     String description=c.getString(c.getColumnIndex("description"));
