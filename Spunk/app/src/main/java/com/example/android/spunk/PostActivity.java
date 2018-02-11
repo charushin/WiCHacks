@@ -60,7 +60,11 @@ public class PostActivity extends AppCompatActivity {
                   for (int i=0;i<titles.size();i++)
                       Log.d(TAG, titles.get(i));
               }*/
-            NavUtils.navigateUpFromSameTask(PostActivity.this);
+                Intent upIntent = NavUtils.getParentActivityIntent(PostActivity.this);
+                upIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(upIntent);
+                finish();
+         //   NavUtils.navigateUpFromSameTask(PostActivity.this);
             }
         });
 
