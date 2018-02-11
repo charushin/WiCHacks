@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--<ListView
+        android:id="@+id/locale_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>-->
+
+
+    <TextView
+        android:id="@+id/userId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/radiogroup"
+        android:fontFamily="@font/aclonica"
+        android:text="User ID"
+        android:padding="10dp"
+        android:layout_marginTop="60sp" />
+
+    <EditText
+        android:id="@+id/editUserId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@id/topic" />
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editUserId"
+        android:fontFamily="@font/aclonica"
+        android:padding="10dp"
+        android:text="Add Your Comment"
+        android:layout_marginTop="60sp"/>
+
+    <EditText
+        android:id="@+id/editComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@id/comment" />
+
+    <!--<Button
+        android:id="@+id/button_discard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_toEndOf="@+id/button_post"
+        android:layout_toRightOf="@+id/button_post"
+        android:text="@string/button_discard" />-->
+
+    <Button
+        android:id="@+id/button_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editDesc"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="52dp"
+        android:layout_toEndOf="@+id/comment"
+        android:layout_toRightOf="@+id/comment"
+        android:text="@string/button_post" />
+
+</LinearLayout>

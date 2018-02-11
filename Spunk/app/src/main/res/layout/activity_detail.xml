@@ -4,11 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/detailLayout"
     tools:context="com.example.android.spunk.DetailActivity">
 
 
 
+    <TextView
+        android:id="@+id/titleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
+        android:text="My Feed"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <TextView
+        android:id="@+id/descriptionView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="My Feed"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
 
 
@@ -17,20 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
-            <TextView
-                android:id="@+id/titleView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
 
-                android:text="My Feed"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
-            <TextView
-                android:id="@+id/descriptionView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:text="My Feed"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
 
             <ListView
                 android:id="@+id/menu_detail_view"
@@ -39,5 +40,13 @@
                 android:paddingBottom="30dp"
                 android:paddingTop="30dp"></ListView>
         </FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
     </android.support.constraint.ConstraintLayout>
