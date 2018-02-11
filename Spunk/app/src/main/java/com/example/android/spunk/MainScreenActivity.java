@@ -45,8 +45,8 @@ public class MainScreenActivity extends AppCompatActivity
 
 
         //for tab layouts and fragments
-        Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar);
+       // Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
+       // setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
