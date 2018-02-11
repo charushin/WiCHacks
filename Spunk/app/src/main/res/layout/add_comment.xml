@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <!--<ListView
@@ -10,7 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </ListView>-->
-
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorPrimary"
+        />
 
     <TextView
         android:id="@+id/userId"
@@ -68,6 +74,7 @@
         android:layout_marginTop="52dp"
         android:layout_toEndOf="@+id/comment"
         android:layout_toRightOf="@+id/comment"
+        android:onClick="addComment"
         android:text="@string/button_post" />
 
 </LinearLayout>

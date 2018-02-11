@@ -8,8 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
+
+import org.w3c.dom.Comment;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,13 +24,14 @@ public class DetailActivity extends AppCompatActivity {
     DatabaseHelper myDBHelper;
     ArrayList<Comments> comments=new ArrayList<Comments>();
     private ListView mListView;
+    int postId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        int postId=this.getIntent().getExtras().getInt("postId");
+         postId=this.getIntent().getExtras().getInt("postId");
         String title=this.getIntent().getExtras().getString("title");
         String desc=this.getIntent().getExtras().getString("description");
 
@@ -85,7 +91,11 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final Dialog dialog = new Dialog(DetailActivity.this, R.style.Dialog);
                 dialog.setContentView(R.layout.add_comment);
-                dialog.setTitle("Choose locales");
+               dialog.setTitle("Add Comment");
+                Toolbar toolbar1=(Toolbar)findViewById(R.id.toolbar);
+                //toolbar1.setTitle("Add Comment");
+                //setSupportActionBar(toolbar1);
+                //getSupportActionBar().setTitle("Add Comment");
                /* final ListView localeList= (ListView) dialog.findViewById(R.id.locale_list);
                 DetailAdapter detailAdapter = new DetailAdapter(MainActivity.this, locales);
                 localeList.setAdapter(detailAdapter);
@@ -107,7 +117,16 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
+    public void addComment(View view){
+        //startActivityForResult();
+        EditText text1=(EditText)findViewById(R.id.editUserId);
+        EditText text2=(EditText)findViewById(R.id.editComment);
 
+        Comments c=new Comments(3,Integer.parseInt(text1.toString()),postId, text2.toString());
+        DataSet.addComment(c);
+        ((BaseAdapter)mListView.getAdapter()).notifyDataSetChanged();
+
+    }
     public void initialiseDatabase(){
         myDBHelper = new DatabaseHelper(this);
         //myDBHelper = new DatabaseHelper(this);

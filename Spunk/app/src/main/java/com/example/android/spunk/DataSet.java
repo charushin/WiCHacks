@@ -87,4 +87,8 @@ public class DataSet {
 
         return comments1;
     }
+
+    public static void addComment(Comments c){
+        DataSet.comments.add(c);
+    }
 }
