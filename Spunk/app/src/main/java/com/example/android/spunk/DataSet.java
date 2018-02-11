@@ -1,5 +1,7 @@
 package com.example.android.spunk;
 
+import org.w3c.dom.Comment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,5 +74,17 @@ public class DataSet {
         comments.add(c1);
         comments.add(c2);
         return comments;
+    }
+
+    public static List<Comments> getComments(int postId){
+        List<Comments> comments1=new ArrayList<Comments>();
+
+        for(Comments c:comments){
+            if(c.getPostId()==postId){
+                comments1.add(c);
+            }
+        }
+
+        return comments1;
     }
 }

@@ -20,12 +20,14 @@
         android:fontFamily="@font/aclonica"
         android:text="User ID"
         android:padding="10dp"
+        android:textColor="@color/black"
         android:layout_marginTop="60sp" />
 
     <EditText
         android:id="@+id/editUserId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:padding="10dp"
         android:layout_below="@id/topic" />
 
@@ -34,6 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editUserId"
+        android:textColor="@color/black"
         android:fontFamily="@font/aclonica"
         android:padding="10dp"
         android:text="Add Your Comment"
@@ -43,6 +46,7 @@
         android:id="@+id/editComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:padding="10dp"
         android:layout_below="@id/comment" />
 

@@ -34,9 +34,15 @@ public class DetailActivity extends AppCompatActivity {
         titleView.setText(title);
         TextView descriptionView=(TextView)findViewById(R.id.descriptionView);
         descriptionView.setText(desc);
-        initialiseDatabase();
+        /*initialiseDatabase();
         comments=myDBHelper.getComments(postId);
 
+
+
+*/
+
+        DataSet.initializeComments();
+        comments=(ArrayList)DataSet.getComments(postId);
         final DetailAdapter adapter = new DetailAdapter(this, comments, R.layout.list_comments);
 
         // Create list view
