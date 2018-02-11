@@ -5,4 +5,10 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorBG">#500171</color>
     <color name="white">#FFFFFF</color>
+    <color name="colorPrimary">#671f80</color>
+    <color name="colorPrimaryDark">#421b69</color>
+    <color name="colorAccent">#654b73</color>
+    <color name="colorBG">#500171</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>
