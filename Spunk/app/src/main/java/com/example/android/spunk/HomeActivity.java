@@ -1,5 +1,6 @@
 package com.example.android.spunk;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 public class HomeActivity extends BaseActivity {
 
@@ -44,6 +46,10 @@ public class HomeActivity extends BaseActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Blog"));
         tabLayout.addTab(tabLayout.newTab().setText("New Questions"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        ImageView iv = (ImageView)findViewById(R.id.imageView2);
+        iv.setImageResource(R.drawable.srm6);
+
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final PagerAdapter adapter = new PagerAdapter

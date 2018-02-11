@@ -40,8 +40,6 @@
             <!-- </intent-filter> -->
         </activity>
 
-        <!-- <activity android:name=".MainActivity"></activity> -->
-        <activity android:name=".helplineActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">

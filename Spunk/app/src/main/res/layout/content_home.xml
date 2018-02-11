@@ -12,7 +12,7 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text=""
         tools:layout_editor_absoluteX="203dp"
         tools:layout_editor_absoluteY="107dp"
         tools:ignore="MissingConstraints" />
@@ -32,5 +32,8 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/tab_layout"/>
+        android:layout_below="@id/tab_layout"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="81dp" />
 </android.support.constraint.ConstraintLayout>
