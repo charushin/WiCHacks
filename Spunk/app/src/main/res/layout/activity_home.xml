@@ -27,14 +27,16 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
         <LinearLayout
-            android:layout_width="400sp"
-            android:layout_height="250sp"
+            android:id="@+id/image_layout"
+            android:layout_width="match_parent"
+            android:layout_height="150sp"
+            android:scaleType="fitXY"
             android:layout_below="@+id/tab_layout">
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="400sp"
-                android:layout_height="250sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
 
@@ -49,7 +51,7 @@
             android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_below="@id/imageView2"/>
+            android:layout_below="@id/image_layout"/>
 
     </RelativeLayout>
 

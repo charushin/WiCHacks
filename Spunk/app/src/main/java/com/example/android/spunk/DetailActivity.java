@@ -32,7 +32,7 @@ public class DetailActivity extends AppCompatActivity {
         final DetailAdapter adapter = new DetailAdapter(this, comments, R.layout.list_comments);
 
         // Create list view
-        mListView = (ListView) findViewById(R.id.menu_list_view);
+        mListView = (ListView) findViewById(R.id.menu_detail_view);
 
         mListView.setAdapter(adapter);
 

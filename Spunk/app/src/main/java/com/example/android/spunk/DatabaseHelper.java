@@ -185,6 +185,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public ArrayList<PostEntity> getPosts(){
+        myDataBase = this.getReadableDatabase();
         ArrayList<PostEntity> posts=new ArrayList<PostEntity>();
         String query="select * from Posts where type='Q';"; // WHERE PARENT_ID = " + id + " AND IS_DETAIL='NO'";
         System.out.println(query);
