@@ -32,13 +32,7 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <!-- <activity android:name=".MainActivity"></activity> -->
-        <activity android:name=".helplineActivity">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+        <activity android:name=".helplineActivity"></activity>
 
         <activity
             android:name=".SplashActivity"
@@ -59,7 +53,9 @@
             android:name=".PostActivity"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.CustomTheme" />
+
         <activity android:name=".DetailActivity"></activity>
+
     </application>
 
 </manifest>
