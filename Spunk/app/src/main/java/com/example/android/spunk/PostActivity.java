@@ -49,7 +49,7 @@ public class PostActivity extends AppCompatActivity {
                 //mAdapter.notifyDataSetChanged();
               //  mText.setText(null);
               myDBHelper.setPost(type, title.getText().toString(), desc.getText().toString(), 1);
-                Log.d(TAG, "After Set Post");
+       /*         Log.d(TAG, "After Set Post");
               ArrayList<String> titles = myDBHelper.getPostTitles("B");
               String title2 = myDBHelper.getPost(1);
               Log.d(TAG, "After get Post Titles Post");
@@ -59,7 +59,8 @@ public class PostActivity extends AppCompatActivity {
               else {
                   for (int i=0;i<titles.size();i++)
                       Log.d(TAG, titles.get(i));
-              }
+              }*/
+            NavUtils.navigateUpFromSameTask(PostActivity.this);
             }
         });
 

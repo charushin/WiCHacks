@@ -19,4 +19,5 @@
     <string name="crisis_tipline">Cyber Tipline: </string>
     <string name="tipline_no">800-843-5678</string>
     <string name="link">Click here for more details</string>
+    <string name="title_activity_post_detail">PostDetailActivity</string>
 </resources>
