@@ -81,6 +81,14 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="0dp" />
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="351dp"
+        android:layout_height="331dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="18dp"
+        tools:layout_editor_absoluteY="118dp" />
 
     <TextView
         android:id="@+id/textView3"
